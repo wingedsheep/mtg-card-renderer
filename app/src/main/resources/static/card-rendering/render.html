@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MTG Card Renderer</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { margin: 0; padding: 0; background: transparent; }
+        /* Override scale for server-side rendering — controlled via deviceScaleFactor instead */
+        .mtg-card { transform: none !important; transform-origin: top left; }
+    </style>
+</head>
+<body>
+    <div id="card-container"></div>
+    <script src="helpers.js"></script>
+    <script src="script.js"></script>
+    <script>
+        function renderCardFromJson(card) {
+            const container = document.getElementById('card-container');
+            container.innerHTML = '';
+            const cardEl = createMTGCard(card, 1, 1);
+            container.appendChild(cardEl);
+        }
+    </script>
+</body>
+</html>
