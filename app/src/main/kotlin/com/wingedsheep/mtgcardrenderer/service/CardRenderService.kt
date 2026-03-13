@@ -73,7 +73,6 @@ class CardRenderService(
             return when (format) {
                 ImageFormat.PNG -> screenshotBytes
                 ImageFormat.JPG -> convertFormat(screenshotBytes, "jpg", 0.95f)
-                ImageFormat.WEBP -> convertFormat(screenshotBytes, "webp", 0.90f)
             }
         } finally {
             page.close()

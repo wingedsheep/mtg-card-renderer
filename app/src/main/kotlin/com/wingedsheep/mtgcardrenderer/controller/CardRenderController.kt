@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*
 class CardRenderController(
     private val renderService: CardRenderService
 ) {
-    @PostMapping("/render", produces = ["image/png", "image/jpeg", "image/webp"])
+    @PostMapping("/render", produces = ["image/png", "image/jpeg"])
     @Operation(
         summary = "Render an MTG card image",
         description = "Takes a Scryfall-format card JSON and renders it as an image in the specified format.",
@@ -26,8 +26,7 @@ class CardRenderController(
                 description = "Rendered card image",
                 content = [
                     Content(mediaType = "image/png"),
-                    Content(mediaType = "image/jpeg"),
-                    Content(mediaType = "image/webp")
+                    Content(mediaType = "image/jpeg")
                 ]
             ),
             ApiResponse(responseCode = "400", description = "Invalid card JSON"),
