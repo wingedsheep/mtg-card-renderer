@@ -41,15 +41,14 @@ function resizeOracleText(oracle, cardEl, needsSpace) {
 
 function resizeTextHorizontally(el) {
   void el.offsetHeight;
-  const computedStyle = window.getComputedStyle(el);
-  let fontSize = parseFloat(computedStyle.fontSize);
-  el.style.fontSize = fontSize + "px";
-  setTimeout(() => {
-    while (el.scrollWidth > el.clientWidth && fontSize > 4) {
-      fontSize -= 0.5;
-      el.style.fontSize = fontSize + "px";
-    }
-  }, 0);
+  el.style.transform = "none";
+  const textWidth = el.scrollWidth;
+  const boxWidth = el.clientWidth;
+  if (textWidth > boxWidth) {
+    const scale = boxWidth / textWidth;
+    el.style.transformOrigin = "left center";
+    el.style.transform = `scaleX(${scale})`;
+  }
 }
 
 function setupTextResizing(cardEl, props) {
